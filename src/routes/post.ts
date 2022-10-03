@@ -10,9 +10,9 @@ import { prisma } from '../database';
 
 const files = resolve(process.cwd(), 'files');
 
-const router = Router();
+export const post = Router();
 
-router.post('/upload/', fileUpload({ limits: { fileSize: 10_485_760 }, debug: true }), async (request, response) => {
+post.post('/upload/', fileUpload({ limits: { fileSize: 10_485_760 }, debug: true }), async (request, response) => {
 	const authorization = request.get('authorization');
 	if(isNullOrUndefined(authorization)) return response.sendStatus(401);
 
@@ -51,8 +51,6 @@ router.post('/upload/', fileUpload({ limits: { fileSize: 10_485_760 }, debug: tr
 
 	return;
 });
-
-export default router;
 
 const generateRandomString = (): string => {
 	const str = (Math.random() + 1).toString(36).substring(7);

@@ -5,9 +5,9 @@ import { prisma } from '../database';
 import { generateApiKey } from '../utils/generateApiKey';
 
 
-const router = Router();
+export const createUser = Router();
 
-router.get('/createUser', async (request, response) => {
+createUser.get('/admin/create', async (request, response) => {
 	const authorization = request.get('authorization');
 	if(isNullOrUndefined(authorization)) return response.sendStatus(401);
 
@@ -32,5 +32,3 @@ router.get('/createUser', async (request, response) => {
 
 	return;
 });
-
-export default router;

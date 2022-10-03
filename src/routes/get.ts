@@ -4,9 +4,9 @@ import { resolve } from 'node:path';
 
 const files = resolve(process.cwd(), 'files');
 
-const router = Router();
+export const get = Router();
 
-router.get('/i/:id', (request, response) => {
+get.get('/i/:id', (request, response) => {
 	console.debug(`IP ${request.ip} accessing ${request.params.id}`);
 	for(const file of readdirSync(files)) {
 		if(request.params.id === file) {
@@ -15,5 +15,3 @@ router.get('/i/:id', (request, response) => {
 	}
 	response.sendStatus(404);
 });
-
-export default router;
